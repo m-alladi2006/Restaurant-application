@@ -3,11 +3,10 @@ import heroImage from "../../assets/images/hero-banner.png";
 import { Link } from "react-router-dom";
 
 import Footer from "../../components/Footer/Footer";
-import PageTransition from "../PageTransition";
+
 function Hero() {
     return (
         <>
-        <PageTransition>
                     <section
             className="hero-section"
             style={{ backgroundImage: `url(${heroImage})` }}
@@ -346,8 +345,6 @@ function Hero() {
 
 </section>
 < Footer/>
-</PageTransition>
-
 </>
     );
 }

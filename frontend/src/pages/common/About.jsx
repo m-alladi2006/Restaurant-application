@@ -56,13 +56,13 @@ const About = () => {
 
               <div className="about-button-group">
 
-                <button className="about-primary-btn">
+                <Link to="/menu" className="about-primary-btn">
                   Explore Menu
-                </button>
+                </Link>
 
-                <button className="about-secondary-btn">
+                <Link to="/reservation" className="about-secondary-btn">
                   Reserve Table
-                </button>
+                </Link>
 
               </div>
 
@@ -121,9 +121,9 @@ const About = () => {
 
             </p>
 
-            <button className="about-primary-btn">
+            <a href="#experience" className="about-primary-btn">
               Learn More
-            </button>
+            </a>
 
           </div>
 
@@ -131,7 +131,7 @@ const About = () => {
 
         {/* ================= SIGNATURE EXPERIENCE ================= */}
 
-<section className="about-experience-section">
+<section className="about-experience-section" id="experience">
 
     <div className="about-section-heading">
 

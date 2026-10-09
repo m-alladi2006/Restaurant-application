@@ -13,26 +13,51 @@ import PageTransition from "../../components/PageTransition";
 
 const Reservation = () => {
     const navigate = useNavigate();
-const handleReservation = (e) => {
-
-    e.preventDefault();
-
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-
-    if (isLoggedIn !== "true") {
-
-        alert("⚠ Please login to reserve a table.");
-
-        navigate("/login");
-
-        return;
-    }
-
-    alert("🎉 Table Reserved Successfully!");
-
-    // Later we'll call the Spring Boot Reservation API here.
-};
     const [date, setDate] = useState(new Date());
+    const [time, setTime] = useState("07:00 PM");
+    const [form, setForm] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        guests: 2,
+        specialRequest: ""
+    });
+
+    const handleChange = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleReservation = (e) => {
+        e.preventDefault();
+
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+        if (isLoggedIn !== "true") {
+            alert("⚠ Please login to reserve a table.");
+            navigate("/login");
+            return;
+        }
+
+        const formattedDate = date.toLocaleDateString("en-US", {
+            weekday: "short",
+            month: "short",
+            day: "numeric",
+            year: "numeric"
+        });
+
+        alert(`🎉 Table Reserved Successfully!\n\nName: ${form.name}\nDate: ${formattedDate}\nTime: ${time}\nGuests: ${form.guests}\n\nWe look forward to serving you!`);
+
+        setForm({
+            name: "",
+            email: "",
+            phone: "",
+            guests: 2,
+            specialRequest: ""
+        });
+    };
 
     return (
 
@@ -74,7 +99,7 @@ const handleReservation = (e) => {
     showNeighboringMonth={true}
 />
 
-<TimePicker />
+<TimePicker onChange={setTime} />
 
                 </div>
 
@@ -89,12 +114,20 @@ const handleReservation = (e) => {
 
                             <input
                                 type="text"
+                                name="name"
                                 placeholder="Full Name"
+                                value={form.name}
+                                onChange={handleChange}
+                                required
                             />
 
                             <input
                                 type="email"
+                                name="email"
                                 placeholder="Email Address"
+                                value={form.email}
+                                onChange={handleChange}
+                                required
                             />
 
                         </div>
@@ -103,26 +136,33 @@ const handleReservation = (e) => {
 
                             <input
                                 type="tel"
+                                name="phone"
                                 placeholder="Phone Number"
+                                value={form.phone}
+                                onChange={handleChange}
+                                required
                             />
 
                             <input
                                 type="number"
+                                name="guests"
                                 placeholder="Guests"
                                 min="1"
+                                max="20"
+                                value={form.guests}
+                                onChange={handleChange}
+                                required
                             />
-
-                        </div>
-
-                        <div className="reservation-row">
 
                         </div>
 
                         <textarea
 
                             rows="6"
-
-                            placeholder="Special Request"
+                            name="specialRequest"
+                            placeholder="Special Request (optional)"
+                            value={form.specialRequest}
+                            onChange={handleChange}
 
                         ></textarea>
 

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./CommonCss/Contact.css";
 
 import Navbar from "../../components/Navbar/Navbar";
@@ -13,6 +14,31 @@ import {
 import PageTransition from "../../components/PageTransition";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`Thank you, ${formData.name}! Your message has been received. We will get back to you shortly.`);
+    setFormData({
+      name: "",
+      email: "",
+      subject: "",
+      message: ""
+    });
+  };
+
   return (
     <>
 <PageTransition>
@@ -59,9 +85,9 @@ const Contact = () => {
               <h4>Address</h4>
 
               <p>
-                123 Gourmet Street
+                Banjara Hills, Road No. 12
                 <br />
-                New York, NY 10001
+                Hyderabad, Telangana 500034
               </p>
 
             </div>
@@ -77,7 +103,7 @@ const Contact = () => {
               <h4>Phone</h4>
 
               <p>
-                +1 (212) 555-1234
+                +91 98765 43210
               </p>
 
             </div>
@@ -93,7 +119,7 @@ const Contact = () => {
               <h4>Email</h4>
 
               <p>
-                info@luxora.com
+                support@spicehaven.com
               </p>
 
             </div>
@@ -126,33 +152,49 @@ const Contact = () => {
 
           <h2>SEND US A MESSAGE</h2>
 
-          <form>
+          <form onSubmit={handleSubmit}>
 
             <div className="row">
 
               <input
                 type="text"
+                name="name"
                 placeholder="Your Name"
+                value={formData.name}
+                onChange={handleChange}
+                required
               />
 
               <input
                 type="email"
+                name="email"
                 placeholder="Your Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
               />
 
             </div>
 
             <input
               type="text"
+              name="subject"
               placeholder="Subject"
+              value={formData.subject}
+              onChange={handleChange}
+              required
             />
 
             <textarea
               rows="8"
+              name="message"
               placeholder="Your Message"
+              value={formData.message}
+              onChange={handleChange}
+              required
             ></textarea>
 
-            <button>
+            <button type="submit">
 
               SEND MESSAGE
 

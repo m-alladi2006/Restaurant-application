@@ -1,7 +1,7 @@
 import "./CommonCss/Register.css";
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
@@ -18,6 +18,8 @@ import {
 import PageTransition from "../../components/PageTransition";
 
 const Register = () => {
+
+    const navigate = useNavigate();
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -84,7 +86,8 @@ const Register = () => {
     );
 
 
-    alert("Registration Successful ✅");
+    alert("Registration Successful ✅ Please log in with your credentials.");
+    navigate("/login");
 
 };
 

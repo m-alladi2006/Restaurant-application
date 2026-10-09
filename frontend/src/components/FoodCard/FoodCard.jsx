@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
     FaStar,
     FaShoppingCart,
@@ -7,6 +8,7 @@ import {
 } from "react-icons/fa";
 
 function FoodCard({ item, onAddToCart }) {
+    const [liked, setLiked] = useState(false);
 
     return (
 
@@ -57,7 +59,12 @@ function FoodCard({ item, onAddToCart }) {
 
                     }
 
-                    <button className="wishlist">
+                    <button 
+                        className={`wishlist ${liked ? 'active' : ''}`}
+                        style={liked ? { background: '#FF6B35', color: '#fff' } : {}}
+                        onClick={() => setLiked(prev => !prev)}
+                        title={liked ? "Remove from Favorites" : "Add to Favorites"}
+                    >
 
                         <FaHeart />
 

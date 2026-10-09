@@ -1,6 +1,6 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import "./Footer.css";
-
-
 
 import {
     FaFacebookF,
@@ -16,6 +16,17 @@ import {
 } from "react-icons/fa6";
 
 function Footer() {
+    const [newsletterEmail, setNewsletterEmail] = useState("");
+
+    const handleSubscribe = (e) => {
+        e.preventDefault();
+        if (!newsletterEmail.trim()) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+        alert(`Thank you for subscribing! Exclusive offers will be sent to ${newsletterEmail}.`);
+        setNewsletterEmail("");
+    };
 
     return (
 
@@ -57,15 +68,15 @@ function Footer() {
 
                         <ul className="footer-links">
 
-                            <li>Home</li>
+                            <li><Link to="/">Home</Link></li>
 
-                            <li>Menu</li>
+                            <li><Link to="/menu">Menu</Link></li>
 
-                            <li>Reservation</li>
+                            <li><Link to="/reservation">Reservation</Link></li>
 
-                            <li>About Us</li>
+                            <li><Link to="/about">About Us</Link></li>
 
-                            <li>Contact Us</li>
+                            <li><Link to="/contact">Contact Us</Link></li>
 
                         </ul>
 
@@ -113,18 +124,21 @@ function Footer() {
                         Subscribe To Our Newsletter
                     </h4>
 
-                    <div className="newsletter-box">
+                    <form className="newsletter-box" onSubmit={handleSubscribe}>
 
                         <input
                             type="email"
                             placeholder="Enter your email"
+                            value={newsletterEmail}
+                            onChange={(e) => setNewsletterEmail(e.target.value)}
+                            required
                         />
 
-                        <button>
+                        <button type="submit">
                             Subscribe
                         </button>
 
-                    </div>
+                    </form>
 
                 </div>
 

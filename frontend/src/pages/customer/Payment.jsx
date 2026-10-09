@@ -1,15 +1,18 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "./CustomerCss/payment.css";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import PageTransition from "../../components/PageTransition";
+import upiQr from "../../assets/images/upi-qr.png";
 
 import { useCart } from "../../context/CartContext";
 
 function Payment() {
 
-    const { cartItems, totalPrice } = useCart();
+    const navigate = useNavigate();
+    const { cartItems, totalPrice, clearCart } = useCart();
 
     const [showQR, setShowQR] = useState(false);
 
@@ -18,6 +21,18 @@ function Payment() {
     const gst = totalPrice * 0.05;
 
     const total = totalPrice + delivery + gst;
+
+    const handlePaid = () => {
+        if (cartItems.length === 0) {
+            alert("Your cart is empty!");
+            navigate("/menu");
+            return;
+        }
+        const orderId = "SPICE-" + Math.floor(100000 + Math.random() * 900000);
+        clearCart();
+        alert(`🎉 Payment Confirmed!\n\nOrder ID: ${orderId}\nAmount Paid: ₹${total.toFixed(2)}\n\nThank you! Your delicious meal is being prepared.`);
+        navigate("/home");
+    };
 
     return (
 
@@ -82,7 +97,7 @@ function Payment() {
                                     <h3>Scan & Pay</h3>
 
                                     <img
-                                        src="src/assets/images/upi-qr.png"
+                                        src={upiQr}
                                         alt="UPI QR"
                                         className="qr-image"
                                     />
@@ -105,7 +120,10 @@ function Payment() {
 
                                     </div>
 
-                                    <button className="confirm-btn">
+                                    <button 
+                                        className="confirm-btn"
+                                        onClick={handlePaid}
+                                    >
 
                                         I've Paid
 
