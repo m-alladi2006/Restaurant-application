@@ -40,6 +40,8 @@ public class SecurityConfig {
                 .cors(cors -> cors.configure(http))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                        // Public Health Check Routes
+                        .requestMatchers("/", "/health").permitAll()
                         // Public Auth Routes
                         .requestMatchers("/auth/**").permitAll()
                         // Public Product & Category Read Routes
