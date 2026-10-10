@@ -672,6 +672,86 @@ export default function App() {
           </div>
         </div>
       )}
+      {/* Admin Modal */}
+      {isAdminOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs">
+          <div className="bg-white rounded-2xl max-w-4xl w-full h-[80vh] flex flex-col shadow-2xl overflow-hidden">
+            <div className="flex justify-between items-center border-b p-4 bg-slate-50">
+              <h3 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                <ShieldCheck className="w-5 h-5 text-indigo-600" />
+                Admin Dashboard
+              </h3>
+              <button onClick={() => setIsAdminOpen(false)}><X className="w-5 h-5 text-slate-400 hover:text-slate-600" /></button>
+            </div>
+            <div className="flex-1 overflow-y-auto p-6 bg-slate-50/50 space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Products Management */}
+                <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+                  <div className="flex justify-between items-center mb-4">
+                    <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                      <Package className="w-4 h-4 text-indigo-500" /> Products
+                    </h4>
+                    <button className="text-xs bg-indigo-50 text-indigo-600 px-3 py-1.5 rounded-lg font-semibold hover:bg-indigo-100 transition">
+                      + Add New
+                    </button>
+                  </div>
+                  <div className="space-y-3 max-h-96 overflow-y-auto pr-2">
+                    {products.map(p => (
+                      <div key={p._id} className="flex justify-between items-center p-3 border border-slate-100 rounded-xl hover:border-indigo-100 transition">
+                        <div className="flex items-center gap-3">
+                          <img src={p.images[0]} alt={p.name} className="w-10 h-10 rounded-lg object-cover bg-slate-100" />
+                          <div>
+                            <p className="font-bold text-xs text-slate-900 line-clamp-1">{p.name}</p>
+                            <p className="text-[10px] text-slate-500">${p.price} • Stock: {p.countInStock}</p>
+                          </div>
+                        </div>
+                        <div className="flex gap-2">
+                          <button className="text-slate-400 hover:text-indigo-600"><RefreshCw className="w-4 h-4" /></button>
+                          <button className="text-slate-400 hover:text-rose-500"><Trash2 className="w-4 h-4" /></button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Orders Management */}
+                <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-200">
+                  <div className="flex justify-between items-center mb-4">
+                    <h4 className="font-bold text-slate-900 flex items-center gap-2">
+                      <ShoppingBag className="w-4 h-4 text-emerald-500" /> Orders
+                    </h4>
+                  </div>
+                  <div className="space-y-3 max-h-96 overflow-y-auto pr-2">
+                    {orders.length === 0 ? (
+                      <div className="text-center py-8 text-slate-400">
+                        <p className="text-xs">No orders yet.</p>
+                      </div>
+                    ) : (
+                      orders.map(o => (
+                        <div key={o._id} className="p-3 border border-slate-100 rounded-xl">
+                          <div className="flex justify-between items-start mb-2">
+                            <div>
+                              <p className="font-bold text-xs text-slate-900">Order #{o._id.substring(4, 12)}</p>
+                              <p className="text-[10px] text-slate-500">{new Date(o.createdAt).toLocaleDateString()}</p>
+                            </div>
+                            <span className="px-2 py-0.5 bg-emerald-50 text-emerald-600 text-[10px] font-bold rounded-full">
+                              {o.status}
+                            </span>
+                          </div>
+                          <div className="flex justify-between items-center pt-2 border-t border-slate-50">
+                            <p className="text-xs font-semibold">${o.totalPrice}</p>
+                            <button className="text-[10px] font-bold text-indigo-600 hover:underline">View Details</button>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
