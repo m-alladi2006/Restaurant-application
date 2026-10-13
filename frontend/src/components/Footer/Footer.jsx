@@ -42,12 +42,12 @@ function Footer() {
 
                         {/* <img
                             src={logo}
-                            alt="Spice Haven"
+                            alt="Mealnexa"
                             className="footer-logo-img"
                         /> */}
 
                         <h2 className="footer-logo">
-                            Spice Haven
+                            Mealnexa
                         </h2>
 
                         <p className="footer-text">
@@ -92,17 +92,17 @@ function Footer() {
 
                         <p>
                             <FaLocationDot className="icon" />
-                            Visakhapatnam, Andhra Pradesh
+                            xxxxxxx
                         </p>
 
                         <p>
                             <FaPhone className="icon" />
-                            +91 7989229964
+                            xxxxxxx
                         </p>
 
                         <p>
                             <FaEnvelope className="icon" />
-                            info@spicehaven.com
+                            xxxxxxx
                         </p>
 
                         <p>
@@ -163,7 +163,7 @@ function Footer() {
                 </div>
 
                 <p className="copyright">
-                    © 2026 Spice Haven Restaurant. All Rights Reserved.
+                    © 2026 Mealnexa Restaurant. All Rights Reserved.
                 </p>
 
             </div>

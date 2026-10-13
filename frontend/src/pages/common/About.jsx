@@ -32,12 +32,12 @@ const About = () => {
               </span>
 
               <h1 className="about-main-heading">
-                Spice Haven Restaurant
+                Mealnexa Restaurant
               </h1>
 
               <p className="about-description">
 
-                Spice Haven is where authentic flavors meet elegant
+                Mealnexa is where authentic flavors meet elegant
                 dining. Every dish is carefully crafted using fresh
                 ingredients and premium spices, creating an unforgettable
                 experience for every guest.
@@ -46,11 +46,11 @@ const About = () => {
 
               <div className="about-contact-info">
 
-                <p>📍 Banjara Hills, Hyderabad</p>
+                <p>📍 xxxxxxx</p>
 
                 <p>🕒 Open Daily : 10:00 AM – 11:00 PM</p>
 
-                <p>📞 +91 98765 43210</p>
+                <p>📞 xxxxxxx</p>
 
               </div>
 
@@ -200,7 +200,7 @@ const About = () => {
 
         <span>OUR GALLERY</span>
 
-        <h2>Discover The Beauty Of Spice Haven</h2>
+        <h2>Discover The Beauty Of Mealnexa</h2>
 
         <p>
             Explore our elegant interiors, signature dishes, and warm atmosphere
